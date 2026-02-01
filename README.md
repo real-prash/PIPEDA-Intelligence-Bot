@@ -23,3 +23,7 @@ Vector DB: Pinecone
 Backend: Flask (Python)
 
 Deployment: AWS
+
+
+. /c/Users/prash/anaconda3/etc/profile.d/conda.sh
+conda activate legalbot
