@@ -65,7 +65,7 @@
 						type: "POST",
 						url: "/get",
 					}).done(function(data) {
-						// Legal Icon in the Chat Bubble response
+						
 						var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://cdn-icons-png.flaticon.com/512/4228/4228723.png" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
 						$("#messageFormeight").append($.parseHTML(botHtml));
 					});

@@ -11,7 +11,7 @@ import os
 
 app = Flask(__name__)
 
-# 1. Load Environment Variables
+#Load environment variables
 load_dotenv()
 PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY')
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
@@ -19,24 +19,22 @@ GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
-# 2. Initialize Embeddings & Vector Store
+#Initialize embeddings & vector store
 print("Initializing Embeddings...")
 embeddings = download_hugging_face_embeddings()
-
-# Must match the index name you used in store_index.py
 index_name = "pipeda-bot-huggingface" 
 
-# Connect to the existing Pinecone index
+#Connect to the Pinecone index
 docsearch = PineconeVectorStore.from_existing_index(
     index_name=index_name,
     embedding=embeddings
 )
 
-# 3. Setup Retriever (Fetch top 3 most relevant chunks)
+#Setup Retriever (Fetch top 3 most relevant chunks)
 retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k":3})
 
-# 4. Initialize Gemini LLM
-# transport="rest" avoids the DefaultCredentialsError
+#Initialize Gemini LLM
+
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
     temperature=0.3,
@@ -44,7 +42,7 @@ llm = ChatGoogleGenerativeAI(
     transport="rest"
 )
 
-# 5. Create the Prompt Template
+#Create the Prompt Template
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system", system_prompt),
@@ -52,8 +50,8 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-# 6. Build the RAG Chain using LCEL (The Fix)
-# This removes the dependency on 'langchain.chains'
+#Build the RAG Chain  
+
 rag_chain = (
     {
         "context": retriever, 
@@ -64,7 +62,7 @@ rag_chain = (
     | StrOutputParser()
 )
 
-# --- Routes ---
+#Routes
 
 @app.route("/")
 def index():
@@ -76,7 +74,6 @@ def chat():
     input = msg
     print(f"User Query: {input}")
     
-    # Note: With RunnablePassthrough, we pass the raw string 'msg', not a dict
     response = rag_chain.invoke(msg)
     
     print("Response : ", response)
