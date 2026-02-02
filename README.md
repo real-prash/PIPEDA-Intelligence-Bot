@@ -7,8 +7,7 @@
 ![Status](https://img.shields.io/badge/Status-Live-success)
 
 ## 🔴 Live Demo
-**Try the bot here:** [http://3.87.83.65:8080/](http://3.87.83.65:8080/)
-
+**Try the bot here:** [http://98.83.26.77:8080/](http://98.83.26.77:8080/) 
 ---
 
 ## 📖 Project Overview
