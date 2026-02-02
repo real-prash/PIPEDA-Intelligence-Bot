@@ -30,4 +30,4 @@ Deployment: AWSc
 . /c/Users/prash/anaconda3/etc/profile.d/conda.sh
 conda activate legalbot
 
-361753377066.dkr.ecr.us-east-2.amazonaws.com/legalbot
+
