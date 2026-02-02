@@ -22,7 +22,7 @@ Vector DB: Pinecone
 
 Backend: Flask (Python)
 
-Deployment: AWS
+Deployment: AWSc
 
 
 . /c/Users/prash/anaconda3/etc/profile.d/conda.sh
