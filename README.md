@@ -1,4 +1,4 @@
-# 🇨🇦 Canadian PIPEDA Intelligence Bot
+# 🇨🇦 Canadian PIPEDA Intelligence Bot by Prashant Nigam
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![LangChain](https://img.shields.io/badge/LangChain-0.3-green)
